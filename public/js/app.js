@@ -143,7 +143,7 @@ class ToggleableTimerForm extends React.Component {
       );
     } else {
       return (
-        <div className='ui basic content center aligned segmnet'>
+        <div className='ui basic content center aligned segment'>
           <button 
             className='ui basic button icon'
             onClick={this.handleFormOpen}
