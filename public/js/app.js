@@ -101,7 +101,7 @@ class TimerForm extends React.Component {
               <label>Title</label>
               <input 
                 type='text' 
-                defaultValue={this.state.title} 
+                value={this.state.title} 
                 onChange={this.handleTitleChange}
               />
             </div>
@@ -109,7 +109,7 @@ class TimerForm extends React.Component {
               <label>Project</label>
               <input 
                 type='text' 
-                defaultValue={this.state.project} 
+                value={this.state.project} 
                 onChange={this.handleProjectChange}  
               />
             </div>
