@@ -17,6 +17,15 @@ class TimersDashboard extends React.Component {
       },
     ],
   }
+  handleCreateFormSubmit = (timer) => {
+    this.createTimer(timer);
+  };
+  createTimer = (timer) => {
+    const t = helpers.newTimer(timer);
+    this.setState({
+      timers: this.state.timers.concat(t),
+    });
+  };
   render() {
     return (
       <div className='ui three column centered grid'>
@@ -25,7 +34,7 @@ class TimersDashboard extends React.Component {
             timers={this.state.timers}
           />
           <ToggleableTimerForm
-            isOpen={true}
+            onFormSubmit={this.handleCreateFormSubmit}
           />
         </div>
       </div>
@@ -97,9 +106,10 @@ class TimerForm extends React.Component {
       title: this.state.title,
       project: this.state.project
     });
-  };
+  }
   render() {
     const submitText = this.props.id ? 'Update' : 'Create';
+    
     return (
       <div className='ui centered card'>
         <div className='content'>
@@ -122,14 +132,14 @@ class TimerForm extends React.Component {
             </div>
             <div className='ui two bottom attached buttons'>
               <button 
-                className='ui basic blue button'
+                className='ui basic blue button' 
                 onClick={this.handleSubmit}
               >
                 {submitText}
               </button>
               <button 
-                className='ui basic red button'
-                onClick={this.props.onFormClose}
+                className='ui basic red button' 
+                onClick={this.props.onFormClose} 
               >
                 Cancel
               </button>
@@ -156,13 +166,12 @@ class ToggleableTimerForm extends React.Component {
     this.props.onFormSubmit(timer);
     this.setState({ isOpen: false });
   }
-
   render() {
     if (this.state.isOpen) {
       return (
         <TimerForm 
-          onFormSubmit = {this.handleFormSubmit}
-          onFormClose = {this.handleFormClose}
+          onFormSubmit={this.handleFormSubmit}
+          onFormClose={this.handleFormClose}
         />
       );
     } else {
