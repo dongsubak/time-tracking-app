@@ -121,6 +121,7 @@ class EditableTimer extends React.Component {
           elapsed={this.props.elapsed}
           runningSince={this.props.runningSince}
           onEditClick={this.handleEditClick}
+          onTrashClick={this.props.onTrashClick}
         />
       );
     }
@@ -228,6 +229,9 @@ class ToggleableTimerForm extends React.Component {
 }
 
 class Timer extends React.Component {
+  handleTrashClick = () => {
+    this.props.onTrashClick(this.props.id);
+  }
   render() {
     const elapsedString = helpers.renderElapsedString(this.props.elapsed);
     return (
@@ -250,7 +254,9 @@ class Timer extends React.Component {
             >
               <i className='edit icon' />
             </span>
-            <span className='right floated edit icon'>
+            <span className='right floated edit icon'
+              onClick={this.handleTrashClick}  
+            >
               <i className='trash icon' />
             </span>
           </div>
